@@ -1,1 +1,5 @@
 libraries/
+*.DS_Store
+*.dSYM
+*.o
+*.swp
