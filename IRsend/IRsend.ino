@@ -1,5 +1,5 @@
 #define ADD 0x00
-int IR_S =  7;     //接arduino 8号引脚
+int IR_S =  6;     //接arduino 7号引脚
 void setup() 
 { 
     pinMode(IR_S, OUTPUT);
@@ -7,32 +7,29 @@ void setup()
 }
 
 void loop() 
-{
-    sendusercode(0xFD);
-    sendusercode(0x80);
-    sendusercode(0x7F);
+{   
+    uint8_t dat, temp;
 
-    delay(2000);
-}
+    IR_Send38KHZ(350,1);//发送9ms的起始码    
+    IR_Send38KHZ(175,0);//发送4.5ms的结果码
+    
+    //IR_Send38KHZ(280,1);//发送9ms的起始码
+    //IR_Send38KHZ(140,0);//发送4.5ms的结果码
 
-void sendusercode(uint8_t temp) {
-    uint8_t dat;
-    Serial.println(temp, HEX);
+    IR_Sendcode(0x00);//用户识别码
+    IR_Sendcode(0xBF);//用户识别码反吗
 
-    IR_Send38KHZ(280,1);//发送9ms的起始码
-    IR_Send38KHZ(140,0);//发送4.5ms的结果码
-
-    IR_Sendcode(ADD);//用户识别码
-    dat=~ADD;
-    IR_Sendcode(dat);//用户识别码反吗
-
+    temp = 0x01;
+    //temp = 0x0D;
     IR_Sendcode(temp);//操作码
-    dat=~temp;
-    IR_Sendcode(dat);//操作码反码
+    IR_Sendcode(~temp);//操作码反码
 
-    IR_Send38KHZ(21,1);//发送结束码
-    Serial.println("ok");
+    IR_Send38KHZ(22,1);//发送结束码 21
+    Serial.println("__ok___");
+
+    delay(3000);
 }
+
 
 
 void IR_Send38KHZ(int x,int y) //产生38KHZ红外脉冲
@@ -56,6 +53,7 @@ void IR_Send38KHZ(int x,int y) //产生38KHZ红外脉冲
 
 void IR_Sendcode(uint8_t x) //
 {
+    //Serial.println(x, HEX);
     for(int i=0;i<8;i++)
     {
         if((x&0x01)==0x01)
@@ -68,6 +66,9 @@ void IR_Sendcode(uint8_t x) //
             IR_Send38KHZ(23,1);
             IR_Send38KHZ(21,0);  
         }
+        //Serial.print(x & 0x01 );
+        //Serial.print(" ");
         x=x>>1;
     }  
+    //Serial.println("__end__");
 }
