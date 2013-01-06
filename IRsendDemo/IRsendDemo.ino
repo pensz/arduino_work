@@ -27,7 +27,8 @@ unsigned int data[] =
 };
 
 void loop() {
-      irsend.sendRaw(data, 67, 38);
-      Serial.println("sendok");
-      delay(3000);
+    irsend.sendNEC(0xFD10EF, 32);
+    //irsend.sendRaw(data, 67, 38);
+    Serial.println("sendok");
+    delay(3000);
 }
