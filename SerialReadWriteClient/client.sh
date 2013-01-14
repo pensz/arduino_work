@@ -28,7 +28,7 @@ sleep 3 # Wait for Arduino is ok
 
 
 function rw {
-    echo -ne $1'$' > $ARDUINO_PORT
+    echo -ne $1'\0' > $ARDUINO_PORT
 
     while true  # Wait for Arduino reply
     do

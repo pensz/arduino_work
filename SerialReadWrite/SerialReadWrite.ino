@@ -13,7 +13,7 @@ void loop() {
 
         if (temp != 255) {
 
-            if (temp == '$') {  // use '$' to indicate command end.
+            if (temp == '\0') {  // use '\0' to indicate command end.
                 bufs[i] = '\0';
 
                 Serial.print("received: ");
