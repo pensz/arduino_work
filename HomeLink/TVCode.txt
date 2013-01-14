@@ -1,0 +1,18 @@
+power: FDB04F
+1 Decoded NEC: FD807F (32 bits)
+2 Decoded NEC: FD40BF (32 bits)
+3 Decoded NEC: FDC03F (32 bits)
+4 Decoded NEC: FD20DF (32 bits)
+5 Decoded NEC: FDA05F (32 bits)
+6 Decoded NEC: FD609F (32 bits)
+7 Decoded NEC: FDE01F (32 bits)
+8 Decoded NEC: FD10EF (32 bits)
+9 Decoded NEC: FD906F (32 bits)
+0 Decoded NEC: FD00FF (32 bits)
+
+vol+ Decoded NEC: FD22DD (32 bits)
+vol- Decoded NEC: FDC23D (32 bits)
+
+p+ Decoded NEC: FD52AD (32 bits)
+p- Decoded NEC: FDD22D (32 bits)
+
